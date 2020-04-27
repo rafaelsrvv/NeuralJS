@@ -2,6 +2,7 @@ var train = true;
 
 function setup() {
 	
+	
 	createCanvas(500, 500);
     background(100,500,600);
 	
@@ -32,6 +33,8 @@ function draw() {
             var index = floor(random(4));
             nn.train(dataset.inputs[index], dataset.outputs[index]);
         }
+		
+		
         if (nn.predict([0, 0])[0] < 0.02 && nn.predict([1, 0])[0] > 0.99) {
             train = false;
             console.log("terminou");

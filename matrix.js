@@ -2,9 +2,13 @@
 	
 	constructor(rows, cols) {
         this.rows = rows;
-        this.cols = cols;
+      
+		this.cols = cols;
+		
+
 
         this.data = [];
+		
 
         for (let i = 0; i < rows; i++) {
             let arr = []
@@ -17,6 +21,7 @@
 
     // Funções Diversas
 
+
     static arrayToMatrix(arr) {
         let matrix = new Matrix(arr.length, 1);
         matrix.map((elm, i, j) => {
@@ -24,6 +29,8 @@
         })
         return matrix;
     }
+	
+	
 
     static MatrixToArray(obj) {
         let arr = []
@@ -32,17 +39,20 @@
         })
         return arr;
     }
+	
 
 
     print() {
         console.table(this.data);
     }
+	
 
     randomize() {
         this.map((elm, i, j) => {
             return Math.random() * 2 - 1;
         });
     }
+	
 
     static map(A, func) {
         let matrix = new Matrix(A.rows, A.cols);
@@ -55,6 +65,7 @@
 
         return matrix;
     }
+	
 
     map(func) {
 
@@ -74,8 +85,9 @@
         });
         return matrix;
     }
+	
 
-    // Operações Estáticas Matriz x Escalar 
+    // Operações Matriz x Matriz
     
     static escalar_multiply(A, escalar) {
         var matrix = new Matrix(A.rows, A.cols);
@@ -87,7 +99,7 @@
         return matrix;
     }
     
-    // Operações Estáticas Matriz x Matriz
+    // Operações Matriz x Matriz
 
     static hadamard(A, B) {
         var matrix = new Matrix(A.rows, A.cols);
@@ -120,6 +132,7 @@
     }
 
     static multiply(A, B) {
+		
         var matrix = new Matrix(A.rows, B.cols);
 
         matrix.map((num, i, j) => {

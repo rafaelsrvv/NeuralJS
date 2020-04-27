@@ -8,6 +8,7 @@ function dsigmoid(x){
 
 class RedeNeural {
 	
+	
 	constructor(i_nodes, h_nodes, o_nodes) {
         this.i_nodes = i_nodes;
         this.h_nodes = h_nodes;
@@ -27,6 +28,7 @@ class RedeNeural {
         this.learning_rate = 0.1;
     }
 	
+	
 	train(arr,target){
 		
 		// INPUT -> HIDDEN
@@ -45,6 +47,7 @@ class RedeNeural {
         // BACKPROPAGATION
 
         // OUTPUT -> HIDDEN
+		
         let expected = Matrix.arrayToMatrix(target);
         let output_error = Matrix.subtract(expected,output);
         let d_output = Matrix.map(output,dsigmoid);
@@ -54,10 +57,13 @@ class RedeNeural {
         gradient = Matrix.escalar_multiply(gradient,this.learning_rate);
         
         // Adjust Bias O->H
+		
         this.bias_ho = Matrix.add(this.bias_ho, gradient);
         // Adjust Weigths O->H
+		
         let weigths_ho_deltas = Matrix.multiply(gradient,hidden_T);
         this.weigths_ho = Matrix.add(this.weigths_ho,weigths_ho_deltas);
+
 
         // HIDDEN -> INPUT
         let weigths_ho_T = Matrix.transpose(this.weigths_ho);
@@ -69,7 +75,9 @@ class RedeNeural {
         gradient_H = Matrix.escalar_multiply(gradient_H, this.learning_rate);
 
         // Adjust Bias O->H
+		
         this.bias_ih = Matrix.add(this.bias_ih, gradient_H);
+		
         // Adjust Weigths H->I
         let weigths_ih_deltas = Matrix.multiply(gradient_H, input_T);
         this.weigths_ih = Matrix.add(this.weigths_ih, weigths_ih_deltas);
